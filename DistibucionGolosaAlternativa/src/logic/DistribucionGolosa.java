@@ -45,6 +45,7 @@ public class DistribucionGolosa {
 	}
 	
 	// Se setean los datos de clientes y centros traidos desde un archivo
+	@SuppressWarnings("unused")
 	public void cargarDatos() throws ClassNotFoundException, IOException {
 		//Se cargan los arrayList de la lectura
 		_centrosDeDistribucion= Lectura.obtenerCentros();
@@ -54,23 +55,52 @@ public class DistribucionGolosa {
 		_cantClientes=_clientes.size();
 		
 		//Se setean los valores comparativos en los centros de distribucion
-		setValoresComparativosYPromedios();
+		for(Cliente cliente:getClientes()) {
+			setValoresComparativosYPromedios(cliente);
+		}
 	}
 	
-	private void setValoresComparativosYPromedios() {
+	private void setValoresComparativosYPromedios(Cliente cliente) {
 		CentroDeDistribucion min = null;
 		
 		for(int i=0;i<_cantCentrosDistribucion;i++) {
-			_centrosDeDistribucion.get(i).calcularDistanciaConCliente(getClientes().get(getCantClientes()-1));
+			_centrosDeDistribucion.get(i).set_distanciaConClienteTemporal
+				(_centrosDeDistribucion.get(i).calcularDistanciaConCliente(cliente));
 			
-			if(_centrosDeDistribucion.get(i).get_distanciaConClienteTemporal()<min.get_distanciaConClienteTemporal()) {
+			if(i==0) {
 				min = _centrosDeDistribucion.get(i);
 			}
-				
+			else if(_centrosDeDistribucion.get(i).get_distanciaConClienteTemporal()<min.get_distanciaConClienteTemporal()) {
+				min = _centrosDeDistribucion.get(i);
+			}
+			
+			_centrosDeDistribucion.get(i).sumaDeDistanciasConClientes(_clientes);
 			_centrosDeDistribucion.get(i).promedioDeDistanciasConClientes(_cantClientes);
 		}
 
 		getClientes().get(getCantClientes()-1).set_centroElegido(min);
+		
+		min.set_cantClientesElegidos(min.get_cantClientesElegidos()+1);
+	}
+	
+	public void setValoresComparativosYPromediosSinElCentro(Cliente cliente) {
+		CentroDeDistribucion min = null;
+		
+		for(int i=0;i<_cantCentrosDeDistribucionElegidos;i++) {
+			_centrosDeDistribucionElegidos.get(i).set_distanciaConClienteTemporal
+				(_centrosDeDistribucionElegidos.get(i).calcularDistanciaConCliente(cliente));
+			
+			if(i==0) {
+				min = _centrosDeDistribucionElegidos.get(i);
+			}
+			else if(_centrosDeDistribucionElegidos.get(i).get_distanciaConClienteTemporal()<min.get_distanciaConClienteTemporal()) {
+				min = _centrosDeDistribucionElegidos.get(i);
+			}
+		}
+
+		getClientes().get(getCantClientes()-1).set_centroElegido(min);
+		
+		min.set_cantClientesElegidos(min.get_cantClientesElegidos()+1);
 	}
 	
 	
@@ -87,7 +117,7 @@ public class DistribucionGolosa {
 	public void agregarCliente(Cliente cliente) {
 		_clientes.add(cliente);
 		_cantClientes++;
-		setValoresComparativosYPromedios();
+		setValoresComparativosYPromedios(cliente);
 	}
 	
 	public void agregarCentroDeDistribucion(CentroDeDistribucion centro) {

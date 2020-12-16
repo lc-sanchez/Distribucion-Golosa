@@ -24,19 +24,23 @@ public class Solver {
 		}
 		else {
 			//La solucion se va guardando en una variable centros de distribucion elegidos en distribucionGolosa
-			//Recorremos el conjunto de centros ordenados de menor a mayor
-			for(Cliente cliente: _distribucion.getClientes()) {
-				for(CentroDeDistribucion centro: _distribucion.getCentrosDeDistribucion()) {
-					
-					
+			//Recorremos el conjunto de centros ordenados de mayor a menor
+			for(CentroDeDistribucion centro: centrosOrdenados()) {
+				if(_distribucion.getCantCentrosDeDistribucionElegidos()< _distribucion.getCantCentrosPermitidos()) {
+					_distribucion.agregarCentroElegido(centro);
+
+					//Se va guardando el costo total de la solucion
+					_costoTotalSolucion+=centro.getSumaDeDistanciasConClientes(); 
+				}
+				//Se desvinculan los clientes de los centros que no fueron elegidos
+				else {
+					for(Cliente cliente : _distribucion.getClientes()) {
+						if(cliente.get_centroElegido().equals(centro)) {
+							_distribucion.setValoresComparativosYPromediosSinElCentro(cliente);
+						}
+					}
 				}
 			}
-//			if(_distribucion.getCantCentrosDeDistribucionElegidos()< _distribucion.getCantCentrosPermitidos()) {
-//			_distribucion.agregarCentroElegido(centro);
-//			
-//			//Se va guardando el costo total de la solucion
-//			_costoTotalSolucion+=centro.getSumaDeDistanciasConClientes(); 
-//			}
 		}
 	}
 	// Se traen los centros ordenados por sort por la suma total de distancias entre el centro y los clientes

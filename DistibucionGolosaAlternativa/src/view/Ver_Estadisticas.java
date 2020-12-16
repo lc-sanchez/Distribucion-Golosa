@@ -38,6 +38,7 @@ public class Ver_Estadisticas extends JFrame{
 		// Se crean las columnas
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Promedio de distancias");
+		modelo.addColumn("Cantidad de clientes");
 		
 		// Se crean las filas
 		for (int i = 0; i < distribucion.getCantCentrosDeDistribucionElegidos(); i++) 
@@ -46,7 +47,8 @@ public class Ver_Estadisticas extends JFrame{
 				{
 					// Se trae por fila el nombre del centro y el promedio de distancia
 					distribucion.getCentrosDeDistribucionElegidos().get(i).getNombre(),
-					String.valueOf(distribucion.getPromedioDeCentro(distribucion.getCentrosDeDistribucionElegidos().get(i)))
+					String.valueOf(distribucion.getPromedioDeCentro(distribucion.getCentrosDeDistribucionElegidos().get(i))),
+					Integer.toString(distribucion.getCentrosDeDistribucionElegidos().get(i).get_cantClientesElegidos())
 				});
 		}
 		

@@ -12,6 +12,7 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 	private double _sumaDeDistanciasConClientes;
 	private double _promedioDistanciaConClientes;
 	private double _distanciaConClienteTemporal;
+	private int _cantClientesElegidos;
 	
 	public CentroDeDistribucion(String nombre, double latitud, double longitud) {
 		setNombre(nombre);
@@ -84,10 +85,10 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 		//Se comparan los centros de distribucion por la suma total de las distancias con todos los clientes
 		//Utilizando la formula de Haversine para poder calcular la distancia en linea recta
 		//Como esta en double las distancias, lo tengo que castear en int
-		if(get_distanciaConClienteTemporal()>otroCentro.get_distanciaConClienteTemporal()) {
+		if(get_cantClientesElegidos()<otroCentro.get_cantClientesElegidos()) {
 			return 1;
 		}
-		else if(get_distanciaConClienteTemporal()<otroCentro.get_distanciaConClienteTemporal()) {
+		else if(get_cantClientesElegidos()>otroCentro.get_cantClientesElegidos()) {
 			return -1;
 		}
 		else {
@@ -152,6 +153,14 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 
 	public void set_distanciaConClienteTemporal(double _distanciaConClienteTemporal) {
 		this._distanciaConClienteTemporal = _distanciaConClienteTemporal;
+	}
+
+	public int get_cantClientesElegidos() {
+		return _cantClientesElegidos;
+	}
+
+	public void set_cantClientesElegidos(int _cantClientesElegidos) {
+		this._cantClientesElegidos = _cantClientesElegidos;
 	}
 	
 
