@@ -59,18 +59,13 @@ public class Vista_Mapa {
 				{
 					// Se llama al solver que en resumidas seteara un arreglo con los centros elegidos
 					distribucion.resolverDistribucion();
-					
-					// Por cada centro se debe hacer un camino con cada cliente por lo tanto:
-					// Se recorren todos los centros
-					for (int i = 0; i < distribucion.getCantCentrosDeDistribucionElegidos(); i++) {
+									
+					// Se guarda un numero al azar que definira un color de camino para cada centro
+					int numRandom = (int) (Math.random()*4);
 						
-						// Se guarda un numero al azar que definira un color de camino para cada centro
-						int numRandom = (int) (Math.random()*4);
-						
-						// Se recorren todos los clientes
-						for (int j = 0; j < distribucion.getCantClientes(); j++) {
-							agregarCamino(j,i,numRandom);
-						}
+					// Se recorren todos los clientes
+					for (int j = 0; j < distribucion.getCantClientes(); j++) {
+						agregarCamino(j,numRandom);
 					}
 					// Se obtienen los centros elegidos (solucion) y se los escribe en un archivo aparte
 					Escritura.escrituraDeSolucion(distribucion.getCentrosDeDistribucionElegidos());
@@ -140,14 +135,14 @@ public class Vista_Mapa {
 	}
 	
 	// Se utiliza para agregar un camino entre un centro y un cliente
-	private void agregarCamino(int numeroDeCliente, int numeroDeCentro,int numRandomElegido) {
+	private void agregarCamino(int numeroDeCliente,int numRandomElegido) {
 		ArrayList<Coordinate> coordenas = new ArrayList<Coordinate>();
 		coordenas.add(new Coordinate(distribucion.getClientes().get(numeroDeCliente).getLatitud(),
 				distribucion.getClientes().get(numeroDeCliente).getLongitud()));
 		coordenas.add(new Coordinate(distribucion.getClientes().get(numeroDeCliente).getLatitud(),
 				distribucion.getClientes().get(numeroDeCliente).getLongitud()));
-		coordenas.add(new Coordinate(distribucion.getCentrosDeDistribucionElegidos().get(numeroDeCentro).getLatitud(),
-				distribucion.getCentrosDeDistribucionElegidos().get(numeroDeCentro).getLongitud()));
+		coordenas.add(new Coordinate(distribucion.getClientes().get(numeroDeCliente).get_centroElegido().getLatitud(),
+				distribucion.getClientes().get(numeroDeCliente).get_centroElegido().getLongitud()));
 		
 		MapPolygon poligono = new MapPolygonImpl(coordenas);
 		poligono.getStyle().setColor(colores.get(numRandomElegido));

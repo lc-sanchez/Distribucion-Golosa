@@ -16,7 +16,7 @@ public class Escritura {
 		// Se crean los clientes de ejemplo
 		Cliente cliente1= new Cliente("Maria",-34.5199,-58.7206);
 		Cliente cliente2= new Cliente("Juan",-34.5161,-58.7177);
-		Cliente cliente3= new Cliente("Lila",-34.522,-58.719);
+		Cliente cliente3= new Cliente("Lila",-34.520,-58.718);
 		Cliente cliente4= new Cliente("Kia",-34.5177,-58.7231);
 		Cliente cliente5 = new Cliente("Mailen",-34.5201,-58.7246);
 		Cliente cliente6 = new Cliente("Anahi",-34.5156,-58.721);

@@ -78,7 +78,7 @@ public class DistribucionGolosa {
 			_centrosDeDistribucion.get(i).promedioDeDistanciasConClientes(_cantClientes);
 		}
 
-		getClientes().get(getCantClientes()-1).set_centroElegido(min);
+		cliente.set_centroElegido(min);
 		
 		min.set_cantClientesElegidos(min.get_cantClientesElegidos()+1);
 	}
@@ -87,7 +87,9 @@ public class DistribucionGolosa {
 		CentroDeDistribucion min = null;
 		
 		for(int i=0;i<_cantCentrosDeDistribucionElegidos;i++) {
+			
 			_centrosDeDistribucionElegidos.get(i).set_distanciaConClienteTemporal
+			
 				(_centrosDeDistribucionElegidos.get(i).calcularDistanciaConCliente(cliente));
 			
 			if(i==0) {
@@ -98,7 +100,7 @@ public class DistribucionGolosa {
 			}
 		}
 
-		getClientes().get(getCantClientes()-1).set_centroElegido(min);
+		cliente.set_centroElegido(min);
 		
 		min.set_cantClientesElegidos(min.get_cantClientesElegidos()+1);
 	}
