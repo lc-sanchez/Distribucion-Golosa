@@ -20,6 +20,7 @@ import org.openstreetmap.gui.jmapviewer.interfaces.MapPolygon;
 
 import archivos.Escritura;
 import logic.DistribucionGolosa;
+import models.CentroDeDistribucion;
 
 public class Vista_Mapa {
 	public JFrame frame;
@@ -59,13 +60,17 @@ public class Vista_Mapa {
 				{
 					// Se llama al solver que en resumidas seteara un arreglo con los centros elegidos
 					distribucion.resolverDistribucion();
-									
-					// Se guarda un numero al azar que definira un color de camino para cada centro
-					int numRandom = (int) (Math.random()*4);
+					
+					for(CentroDeDistribucion centro: distribucion.getCentrosDeDistribucionElegidos()) {
+						// Se guarda un numero al azar que definira un color de camino para cada centro
+						int numRandom = (int) (Math.random()*4);
 						
-					// Se recorren todos los clientes
-					for (int j = 0; j < distribucion.getCantClientes(); j++) {
-						agregarCamino(j,numRandom);
+						// Se recorren todos los clientes
+						for (int j = 0; j < distribucion.getCantClientes(); j++) {
+							if(centro.equals(distribucion.getClientes().get(j).get_centroElegido())) {
+								agregarCamino(j,numRandom);
+							}
+						}
 					}
 					// Se obtienen los centros elegidos (solucion) y se los escribe en un archivo aparte
 					Escritura.escrituraDeSolucion(distribucion.getCentrosDeDistribucionElegidos());
