@@ -2,7 +2,6 @@ package logic;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import models.CentroDeDistribucion;
 import models.Cliente;
@@ -45,7 +44,6 @@ public class DistribucionGolosa {
 	}
 	
 	// Se setean los datos de clientes y centros traidos desde un archivo
-	@SuppressWarnings("unused")
 	public void cargarDatos() throws ClassNotFoundException, IOException {
 		//Se cargan los arrayList de la lectura
 		_centrosDeDistribucion= Lectura.obtenerCentros();
@@ -82,7 +80,6 @@ public class DistribucionGolosa {
 			else if(centros.get(i).get_distanciaConClienteTemporal()<min.get_distanciaConClienteTemporal()) {
 				min = centros.get(i);
 			}
-			
 			// Se calcula la suma de distancias de los clientes hasta el momento con el centro 
 			// y el promedio de distancias de todos los clientes con el centro
 			// Se guardan los valores en el centro desde donde se llaman los metodos
