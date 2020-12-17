@@ -28,8 +28,7 @@ public class DistribucionGolosaTest {
 		distribucion.resolverDistribucion();
 		
 		//Verify
-		assertTrue(distribucion.getCantCentrosDeDistribucionElegidos()==1);
-		assertTrue(distribucion.getCentrosDeDistribucionElegidos().get(0).equals(centro));
+		assertTrue(distribucion.getCantCentrosDeDistribucionElegidos()==1 && distribucion.getCentrosDeDistribucionElegidos().get(0).equals(centro));
 		
 	}
 	
@@ -50,8 +49,7 @@ public class DistribucionGolosaTest {
 		
 		ArrayList<CentroDeDistribucion> centrosObtenidos= distribucion.getCentrosDeDistribucionElegidos();
 		
-		assertTrue(centrosObtenidos.size()==1);
-		assertTrue(centrosObtenidos.get(0).equals(centro));
+		assertTrue(centrosObtenidos.size()==1 && centrosObtenidos.get(0).equals(centro));
 	}
 	
 	@Test
@@ -73,6 +71,20 @@ public class DistribucionGolosaTest {
 		//Verify
 		assertTrue(resultadoEsperado==distribucion.getCostoTotalSolucion());
 	}
+	
+	@Test
+	public void cargarDatosTest() throws ClassNotFoundException, IOException {
+		//Set up
+		DistribucionGolosa distribucion = new DistribucionGolosa(1);
+		
+		//Execute
+		distribucion.cargarDatos();
+		
+		//Verify
+		assertTrue(distribucion.getCantCentrosDeDistribucion()==3 && distribucion.getCantClientes()==6);
+		
+	}
+	
 	
 	
 
