@@ -52,7 +52,7 @@ public class SolverTest {
 		
 		//Verify
 		assertEquals(2,distribucion.getCantCentrosDeDistribucionElegidos());
-		assertTrue(centroObtenido1.equals(centro2) && centroObtenido2.equals(centro3));
+		assertTrue(centroObtenido1.equals(centro3) && centroObtenido2.equals(centro1));
 	}
 
 	@Test
@@ -65,10 +65,29 @@ public class SolverTest {
 		//Execute
 		solver.resolverDistribucion();
 		
-		double resultadoEsperado=5458.137005394175;
+		
+		double resultadoEsperado=7649.380037553005;
 		assertEquals(resultadoEsperado,solver.getCostoTotalSolucion(),12);
 	}
 	
+	@Test
+	public void getCantClientes() throws ClassNotFoundException, IOException {
+		//Set Up 
+		DistribucionGolosa distribucion = initDistribucionGolosa();
+		
+		Solver solver= new Solver(distribucion);
+		
+		solver.resolverDistribucion();
+		
+		//Tenemos que obtener 2 valores
+		CentroDeDistribucion centroObtenido1=distribucion.getCentrosDeDistribucionElegidos().get(0);
+		CentroDeDistribucion centroObtenido2=distribucion.getCentrosDeDistribucionElegidos().get(1);
+		
+		//En total eran 4 clientes
+		assertEquals(3,centroObtenido1.get_cantClientesElegidos());
+		assertEquals(1,centroObtenido2.get_cantClientesElegidos());
+	}
+		
 	private DistribucionGolosa initDistribucionGolosa() throws ClassNotFoundException, IOException {
 		//SetUp
 		DistribucionGolosa distribucion= new DistribucionGolosa(2);
