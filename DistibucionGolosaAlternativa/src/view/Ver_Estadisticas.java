@@ -18,7 +18,7 @@ public class Ver_Estadisticas extends JFrame{
 	}
 	
 	public void initialize() {
-		this.setSize(350,500);
+		this.setSize(610,500);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.setTitle("Estadisticas");
 		this.getContentPane().setLayout(null);
@@ -26,7 +26,7 @@ public class Ver_Estadisticas extends JFrame{
 		this.setVisible(true);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 11, 300, 400);
+		scrollPane.setBounds(20, 11, 560, 400);
 		this.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -38,7 +38,8 @@ public class Ver_Estadisticas extends JFrame{
 		// Se crean las columnas
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Promedio de distancias");
-		modelo.addColumn("Cantidad de clientes");
+		modelo.addColumn("Latitud");
+		modelo.addColumn("Longitud");
 		
 		// Se crean las filas
 		for (int i = 0; i < distribucion.getCantCentrosDeDistribucionElegidos(); i++) 
@@ -48,7 +49,8 @@ public class Ver_Estadisticas extends JFrame{
 					// Se trae por fila el nombre del centro y el promedio de distancia
 					distribucion.getCentrosDeDistribucionElegidos().get(i).getNombre(),
 					String.valueOf(distribucion.getPromedioDeCentro(distribucion.getCentrosDeDistribucionElegidos().get(i))),
-					Integer.toString(distribucion.getCentrosDeDistribucionElegidos().get(i).get_cantClientesElegidos())
+					Double.toString(distribucion.getCentrosDeDistribucionElegidos().get(i).getLatitud()),
+					Double.toString(distribucion.getCentrosDeDistribucionElegidos().get(i).getLongitud())
 				});
 		}
 		
