@@ -5,6 +5,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import logic.DistribucionGolosa;
+import models.CentroDeDistribucion;
 
 public class Ver_Estadisticas extends JFrame{
 	
@@ -18,7 +19,7 @@ public class Ver_Estadisticas extends JFrame{
 	}
 	
 	public void initialize() {
-		this.setSize(610,500);
+		this.setSize(730,500);
 		this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		this.setTitle("Estadisticas");
 		this.getContentPane().setLayout(null);
@@ -26,7 +27,7 @@ public class Ver_Estadisticas extends JFrame{
 		this.setVisible(true);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 11, 560, 400);
+		scrollPane.setBounds(20, 11, 680, 400);
 		this.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -38,19 +39,21 @@ public class Ver_Estadisticas extends JFrame{
 		// Se crean las columnas
 		modelo.addColumn("Nombre");
 		modelo.addColumn("Promedio de distancias");
+		modelo.addColumn("Suma de distancias");
 		modelo.addColumn("Latitud");
 		modelo.addColumn("Longitud");
 		
 		// Se crean las filas
-		for (int i = 0; i < distribucion.getCantCentrosDeDistribucionElegidos(); i++) 
+		for (CentroDeDistribucion centro : distribucion.getCentrosDeDistribucionElegidos()) 
 		{
 			modelo.addRow(new String[] 
 				{
 					// Se trae por fila el nombre del centro y el promedio de distancia
-					distribucion.getCentrosDeDistribucionElegidos().get(i).getNombre(),
-					String.valueOf(distribucion.getPromedioDeCentro(distribucion.getCentrosDeDistribucionElegidos().get(i))),
-					Double.toString(distribucion.getCentrosDeDistribucionElegidos().get(i).getLatitud()),
-					Double.toString(distribucion.getCentrosDeDistribucionElegidos().get(i).getLongitud())
+					centro.getNombre(),
+					Double.toString(centro.getSumaDeDistanciasConClientes()),
+					String.valueOf(distribucion.getPromedioDeCentro(centro)),
+					Double.toString(centro.getLatitud()),
+					Double.toString(centro.getLongitud())
 				});
 		}
 		

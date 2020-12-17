@@ -63,26 +63,42 @@ public class DistribucionGolosa {
 	private void setValoresComparativosYPromedios(Cliente cliente) {
 		CentroDeDistribucion min = null;
 		
+		// Se recorren todos los centros por un cliente y se busca cual es el centro con menor distancia al cliente
+		// Se guarda esa referencia a ese centro en una variable min
 		for(int i=0;i<_cantCentrosDistribucion;i++) {
+			
+			// Se calcula la distancia del centro actual con el cliente y se la guarda en el centro
 			_centrosDeDistribucion.get(i).set_distanciaConClienteTemporal
 				(_centrosDeDistribucion.get(i).calcularDistanciaConCliente(cliente));
 			
-			if(i==0) {
+			// Se pregunta si ya se guardo al menos una vez en el min alguna referencia para comparar
+			if(min==null) {
 				min = _centrosDeDistribucion.get(i);
 			}
+			
+			// En caso de que si se haya guardado, se procede a comparar si el centro actual 
+			// tiene menor distancia al cliente que el centro guardado en min
+			// En caso de que si sea menor, se reemplaza la referencia de min al centro actual
 			else if(_centrosDeDistribucion.get(i).get_distanciaConClienteTemporal()<min.get_distanciaConClienteTemporal()) {
 				min = _centrosDeDistribucion.get(i);
 			}
 			
+			// Se calcula la suma de distancias de los clientes hasta el momento con el centro 
+			// y el promedio de distancias de todos los clientes con el centro
+			// Se guardan los valores en el centro desde donde se llaman los metodos
 			_centrosDeDistribucion.get(i).sumaDeDistanciasConClientes(_clientes);
 			_centrosDeDistribucion.get(i).promedioDeDistanciasConClientes(_cantClientes);
 		}
 
+		// Se vincula el cliente con el centro que este a menor distancia
 		cliente.set_centroElegido(min);
 		
+		// Se incrementa un contador de clientes relacionados en el centro de menor distancia
+		// Para luego elejir que centro abrir
 		min.set_cantClientesElegidos(min.get_cantClientesElegidos()+1);
 	}
 	
+	// Lo mismo que el metodo anterior, pero para clientes que se desvinculan de un centro que se decidio no abrir
 	public void setValoresComparativosYPromediosSinElCentro(Cliente cliente) {
 		CentroDeDistribucion min = null;
 		
