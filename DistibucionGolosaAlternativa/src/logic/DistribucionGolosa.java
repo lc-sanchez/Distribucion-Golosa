@@ -99,7 +99,7 @@ public class DistribucionGolosa {
 	}
 	
 	// Lo mismo que el metodo anterior, pero para clientes que se desvinculan de un centro que se decidio no abrir
-	public void setValoresComparativosYPromediosSinElCentro(Cliente cliente) {
+	public void setValoresComparativosYPromediosCentroElegido(Cliente cliente) {
 		CentroDeDistribucion min = null;
 		
 		for(int i=0;i<_cantCentrosDeDistribucionElegidos;i++) {
