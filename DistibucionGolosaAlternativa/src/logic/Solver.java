@@ -37,7 +37,7 @@ public class Solver {
 					centro.set_cantClientesElegidos(0);
 					for(Cliente cliente : _distribucion.getClientes()) {
 						if(cliente.get_centroElegido().equals(centro)) {
-							_distribucion.setValoresComparativosYPromediosSinElCentro(cliente);
+							_distribucion.setValoresComparativosYPromedios(cliente,_distribucion.getCentrosDeDistribucionElegidos());
 						}
 					}
 				}
