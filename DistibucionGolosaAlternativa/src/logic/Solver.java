@@ -34,6 +34,7 @@ public class Solver {
 				}
 				//Se desvinculan los clientes de los centros que no fueron elegidos
 				else {
+					centro.set_cantClientesElegidos(0);
 					for(Cliente cliente : _distribucion.getClientes()) {
 						if(cliente.get_centroElegido().equals(centro)) {
 							_distribucion.setValoresComparativosYPromediosSinElCentro(cliente);

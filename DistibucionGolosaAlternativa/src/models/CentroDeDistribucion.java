@@ -18,6 +18,7 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 		setNombre(nombre);
 		setLatitud(latitud);
 		setLongitud(longitud);
+		set_cantClientesElegidos(0);
 	}
 
 	public double calcularDistanciaConCliente(Cliente cliente) {
