@@ -75,7 +75,7 @@ public class CentroDeDistribucionTest {
 		
 		//verify
 		//cd1 es mayor que cd2
-		assertTrue(cd1.compareTo(cd2)>0); 
+		assertTrue(cd1.compareTo(cd2)==0); 
 	}
 	
 	@Test
@@ -99,6 +99,27 @@ public class CentroDeDistribucionTest {
 		//Verify
 		assertTrue(promedioEsperado==cd1.getPromedioDistanciasConClientes());
 		
+	}
+	
+	@Test
+	public void equalsDistintosTest() {
+		//Set Up
+		CentroDeDistribucion cd1= new CentroDeDistribucion("Charlone",10,20);
+		CentroDeDistribucion cd2= new CentroDeDistribucion("Pena",5,10);
+		
+		//Verify
+		assertFalse(cd1.equals(cd2));
+		
+	}
+	
+	@Test
+	public void equalsIgualesTest() {
+		//Set Up
+		CentroDeDistribucion cd1= new CentroDeDistribucion("Charlone",10,20);
+		CentroDeDistribucion cd2= new CentroDeDistribucion("Charlone",10,20);
+				
+		//Verify
+		assertTrue(cd1.equals(cd2));
 	}
 
 }

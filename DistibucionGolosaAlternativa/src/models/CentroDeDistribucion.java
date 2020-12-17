@@ -102,7 +102,7 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 	@Override
 	public String toString() {
 		return "[nombre=" + _nombre + ", sumaDeDistanciasConClientes="
-				+ _sumaDeDistanciasConClientes + "]";
+				+ _sumaDeDistanciasConClientes +", cantClientes= "+ _cantClientesElegidos+"]";
 	}
 	
 	//:::::::::::::::::::::::::::: Setters y Getters :::::::::::::::::::::::::::::::::::::::
