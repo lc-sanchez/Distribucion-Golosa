@@ -38,14 +38,15 @@ public class Ver_Estadisticas extends JFrame{
 		
 		// Se crean las columnas
 		modelo.addColumn("Nombre");
-		modelo.addColumn("Promedio de distancias");
 		modelo.addColumn("Suma de distancias");
+		modelo.addColumn("Promedio de distancias");
 		modelo.addColumn("Latitud");
 		modelo.addColumn("Longitud");
 		
 		// Se crean las filas
 		for (CentroDeDistribucion centro : distribucion.getCentrosDeDistribucionElegidos()) 
 		{
+			System.out.println(centro.toString());
 			modelo.addRow(new String[] 
 				{
 					// Se trae por fila el nombre del centro y el promedio de distancia

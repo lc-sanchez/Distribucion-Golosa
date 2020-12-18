@@ -35,6 +35,7 @@ public class DistribucionGolosa {
 		_cantCentrosDeDistribucionElegidos=0;
 		
 		_centrosDeDistribucionElegidos= new ArrayList<CentroDeDistribucion>();
+		_costoTotalSolucion = 0.0;
 		
 	}
 	

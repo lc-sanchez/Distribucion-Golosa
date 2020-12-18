@@ -31,7 +31,7 @@ public class Solver {
 				// Se pregunta si no se elegieron suficientes centros ya
 				if(_distribucion.getCantCentrosDeDistribucionElegidos()< _distribucion.getCantCentrosPermitidos()) {
 					_distribucion.agregarCentroElegido(centro);
-
+					
 					// Se va guardando el costo total de la solucion
 					_costoTotalSolucion+=centro.getSumaDeDistanciasConClientes(); 
 				}
@@ -42,10 +42,15 @@ public class Solver {
 					centro.set_sumaDeDistanciasConClientes(0.0);
 					centro.set_promedioDistanciaConClientes(0.0);
 					
-					for(Cliente cliente : _distribucion.getClientes()) {
-						if(cliente.get_centroElegido().equals(centro)) {
+					for(Cliente cliente : _distribucion.getClientes()) 
+					{
+						if(cliente.get_centroElegido().equals(centro)) 
+						{
 							_distribucion.setValoresComparativosYPromedios(cliente,
 									_distribucion.getCentrosDeDistribucionElegidos());
+							System.out.println("ANTES =" + _costoTotalSolucion);
+							_costoTotalSolucion+=cliente.get_centroElegido().getSumaDeDistanciasConClientes();
+							System.out.println("DESPUES =" + _costoTotalSolucion);
 						}
 					}
 				}
