@@ -38,7 +38,7 @@ public class Ver_Estadisticas extends JFrame{
 		
 		// Se crean las columnas
 		modelo.addColumn("Nombre");
-		modelo.addColumn("Suma de distancias");
+		modelo.addColumn("Costo por centro"); //Es la suma de las distancias con los clientes asignados
 		modelo.addColumn("Promedio de distancias");
 		modelo.addColumn("Latitud");
 		modelo.addColumn("Longitud");

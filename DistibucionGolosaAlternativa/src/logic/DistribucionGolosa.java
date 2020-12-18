@@ -53,13 +53,20 @@ public class DistribucionGolosa {
 		_cantCentrosDistribucion=_centrosDeDistribucion.size();
 		_cantClientes=_clientes.size();
 		
-		//Se setean los valores comparativos en los centros de distribucion
+		//Se setean los centros mas cercanos a los clientes
+		setearCentrosMasCercanos();
+
+		//Se setean los valores comparativos
+		actualizarValoresComparativos();
+	}
+	
+	public void setearCentrosMasCercanos() {
 		for(Cliente cliente:getClientes()) {
-			setValoresComparativosYPromedios(cliente,_centrosDeDistribucion);
+			setCentroMasCercano(cliente,_centrosDeDistribucion);
 		}
 	}
 	
-	public void setValoresComparativosYPromedios(Cliente cliente,ArrayList<CentroDeDistribucion> centros) {
+	public void setCentroMasCercano(Cliente cliente,ArrayList<CentroDeDistribucion> centros) {
 		CentroDeDistribucion min = null;
 		
 		// Se recorren todos los centros por un cliente y se busca cual es el centro con menor distancia al cliente
@@ -82,19 +89,22 @@ public class DistribucionGolosa {
 				min = centros.get(i);
 			}
 		}
-
 		// Se vincula el cliente con el centro que este a menor distancia
 		cliente.set_centroElegido(min);
-		
+
 		// Se incrementa un contador de clientes relacionados en el centro de menor distancia
 		// Para luego elejir que centro abrir
-		min.set_cantClientesElegidos(min.get_cantClientesElegidos()+1);
-		
-		// Se calcula la suma de distancias de los clientes hasta el momento con el centro 
-		// y el promedio de distancias de todos los clientes con el centro
-		// Se guardan los valores en el centro desde donde se llaman los metodos
-		min.sumaDeDistanciasConClientes(_clientes);
-		min.promedioDeDistanciasConClientes(_cantClientes);
+		min.incrementarCantClientes();
+
+
+	}
+
+	public void actualizarValoresComparativos() {
+		for(CentroDeDistribucion centro : getCentrosDeDistribucion()) {
+			
+			centro.sumaDeDistanciasConClientes(_clientes);
+			centro.promedioDeDistanciasConClientes();
+		}
 	}
 	
 	public void resolverDistribucion() {
@@ -109,7 +119,7 @@ public class DistribucionGolosa {
 	public void agregarCliente(Cliente cliente) {
 		_clientes.add(cliente);
 		_cantClientes++;
-		setValoresComparativosYPromedios(cliente,_centrosDeDistribucion);
+		setCentroMasCercano(cliente,_centrosDeDistribucion);
 	}
 	
 	public void agregarCentroDeDistribucion(CentroDeDistribucion centro) {
