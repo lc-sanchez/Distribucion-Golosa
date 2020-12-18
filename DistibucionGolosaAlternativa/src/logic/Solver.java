@@ -48,9 +48,7 @@ public class Solver {
 						{
 							_distribucion.setValoresComparativosYPromedios(cliente,
 									_distribucion.getCentrosDeDistribucionElegidos());
-							System.out.println("ANTES =" + _costoTotalSolucion);
 							_costoTotalSolucion+=cliente.get_centroElegido().getSumaDeDistanciasConClientes();
-							System.out.println("DESPUES =" + _costoTotalSolucion);
 						}
 					}
 				}
