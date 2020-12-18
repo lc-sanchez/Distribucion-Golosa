@@ -81,11 +81,6 @@ public class DistribucionGolosa {
 			else if(centros.get(i).get_distanciaConClienteTemporal()<min.get_distanciaConClienteTemporal()) {
 				min = centros.get(i);
 			}
-			// Se calcula la suma de distancias de los clientes hasta el momento con el centro 
-			// y el promedio de distancias de todos los clientes con el centro
-			// Se guardan los valores en el centro desde donde se llaman los metodos
-			centros.get(i).sumaDeDistanciasConClientes(_clientes);
-			centros.get(i).promedioDeDistanciasConClientes(_cantClientes);
 		}
 
 		// Se vincula el cliente con el centro que este a menor distancia
@@ -94,6 +89,12 @@ public class DistribucionGolosa {
 		// Se incrementa un contador de clientes relacionados en el centro de menor distancia
 		// Para luego elejir que centro abrir
 		min.set_cantClientesElegidos(min.get_cantClientesElegidos()+1);
+		
+		// Se calcula la suma de distancias de los clientes hasta el momento con el centro 
+		// y el promedio de distancias de todos los clientes con el centro
+		// Se guardan los valores en el centro desde donde se llaman los metodos
+		min.sumaDeDistanciasConClientes(_clientes);
+		min.promedioDeDistanciasConClientes(_cantClientes);
 	}
 	
 	public void resolverDistribucion() {

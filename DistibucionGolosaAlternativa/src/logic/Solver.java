@@ -13,7 +13,7 @@ public class Solver {
 	
 	public Solver(DistribucionGolosa distribucion) {
 		setDistribucionGolosa(distribucion);
-		_costoTotalSolucion=distribucion.getCostoTotalSolucion();
+		_costoTotalSolucion=0.0;
 		
 	}
 	
@@ -38,6 +38,7 @@ public class Solver {
 				// Se desvinculan los clientes de los centros que no fueron elegidos
 				else {
 					// Se reinician las variables en los centros no elejidos
+					
 					centro.set_cantClientesElegidos(0);
 					centro.set_sumaDeDistanciasConClientes(0.0);
 					centro.set_promedioDistanciaConClientes(0.0);
@@ -48,7 +49,9 @@ public class Solver {
 						{
 							_distribucion.setValoresComparativosYPromedios(cliente,
 									_distribucion.getCentrosDeDistribucionElegidos());
-							_costoTotalSolucion+=cliente.get_centroElegido().getSumaDeDistanciasConClientes();
+							
+							_costoTotalSolucion+=cliente.get_centroElegido().calcularDistanciaConCliente(cliente);
+							
 						}
 					}
 				}

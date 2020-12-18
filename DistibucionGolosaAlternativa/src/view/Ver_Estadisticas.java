@@ -46,7 +46,6 @@ public class Ver_Estadisticas extends JFrame{
 		// Se crean las filas
 		for (CentroDeDistribucion centro : distribucion.getCentrosDeDistribucionElegidos()) 
 		{
-			System.out.println(centro.toString());
 			modelo.addRow(new String[] 
 				{
 					// Se trae por fila el nombre del centro y el promedio de distancia
