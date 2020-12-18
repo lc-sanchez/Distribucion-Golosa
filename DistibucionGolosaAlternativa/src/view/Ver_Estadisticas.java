@@ -38,8 +38,8 @@ public class Ver_Estadisticas extends JFrame{
 		
 		// Se crean las columnas
 		modelo.addColumn("Nombre");
-		modelo.addColumn("Promedio de distancias");
 		modelo.addColumn("Suma de distancias");
+		modelo.addColumn("Promedio de distancias");
 		modelo.addColumn("Latitud");
 		modelo.addColumn("Longitud");
 		

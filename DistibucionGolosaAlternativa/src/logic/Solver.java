@@ -44,7 +44,7 @@ public class Solver {
 					
 					for(Cliente cliente : _distribucion.getClientes()) {
 						if(cliente.get_centroElegido().equals(centro)) {
-							_distribucion.setValoresComparativosYPromedios(cliente,
+							_distribucion.setCentroMasCercano(cliente,
 									_distribucion.getCentrosDeDistribucionElegidos());
 						}
 					}
