@@ -27,7 +27,7 @@ public class Solver {
 			// La solucion se va guardando en una variable centros de distribucion elegidos en distribucionGolosa
 			// Recorremos el conjunto de centros ordenados de mayor a menor
 			for(CentroDeDistribucion centro: centrosOrdenados()) {
-				
+
 				// Se pregunta si no se elegieron suficientes centros ya
 				if(_distribucion.getCantCentrosDeDistribucionElegidos()< _distribucion.getCantCentrosPermitidos()) {
 					_distribucion.agregarCentroElegido(centro);
@@ -57,13 +57,16 @@ public class Solver {
 				}
 			}
 			_distribucion.actualizarValoresComparativos();
+			
 		}
+		
 	}
 	// Se traen los centros ordenados por sort por la suma total de distancias entre el centro y los clientes
 	private ArrayList<CentroDeDistribucion> centrosOrdenados() {
 		//Se ordenan los centros de menor a mayor
 		ArrayList<CentroDeDistribucion> centrosOrdenados= _distribucion.getCentrosDeDistribucion();
 		Collections.sort(centrosOrdenados); //Implementacion de Mergesort
+		
 		return centrosOrdenados;
 	}
 	

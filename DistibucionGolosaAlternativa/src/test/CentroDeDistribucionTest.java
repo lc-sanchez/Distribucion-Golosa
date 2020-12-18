@@ -93,7 +93,7 @@ public class CentroDeDistribucionTest {
 		c1.set_centroElegido(cd1);
 		c2.set_centroElegido(cd1);
 		
-		//cd1.set_cantClientesElegidos(2);
+		cd1.set_cantClientesElegidos(2);
 		
 		
 		double promedioEsperado=843.9031396283136;

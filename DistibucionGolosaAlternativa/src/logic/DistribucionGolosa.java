@@ -53,12 +53,16 @@ public class DistribucionGolosa {
 		_cantClientes=_clientes.size();
 		
 		//Se setean los centros mas cercanos a los clientes
+		setearCentrosMasCercanos();
+
+		//Se setean los valores comparativos
+		actualizarValoresComparativos();
+	}
+	
+	public void setearCentrosMasCercanos() {
 		for(Cliente cliente:getClientes()) {
 			setCentroMasCercano(cliente,_centrosDeDistribucion);
 		}
-		
-		//Se setean los valores comparativos
-		actualizarValoresComparativos();
 	}
 	
 	public void setCentroMasCercano(Cliente cliente,ArrayList<CentroDeDistribucion> centros) {
@@ -89,6 +93,7 @@ public class DistribucionGolosa {
 		// Se vincula el cliente con el centro que este a menor distancia
 		cliente.set_centroElegido(min);
 		
+		min.incrementarCantClientes();
 	}
 	
 	public void actualizarValoresComparativos() {

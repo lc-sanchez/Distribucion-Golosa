@@ -52,14 +52,16 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 			for(Cliente c : clientes) {
 				if(c.get_centroElegido()==this) {
 					sumaTotalDistancias=sumaTotalDistancias+ calcularDistanciaConCliente(c);
-					_cantClientesElegidos=_cantClientesElegidos+1;
+					
 				}
 			}
 			_sumaDeDistanciasConClientes=sumaTotalDistancias;
 		}
 			
 	}
-	
+	public void incrementarCantClientes() {
+		_cantClientesElegidos=_cantClientesElegidos+1;
+	}
 	public void promedioDeDistanciasConClientes() {
 		_promedioDistanciaConClientes=_sumaDeDistanciasConClientes/_cantClientesElegidos;
 	}
@@ -78,9 +80,6 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 			if (other._nombre != null)
 				return false;
 		} else if (!_nombre.equals(other._nombre))
-			return false;
-		if (Double.doubleToLongBits(_sumaDeDistanciasConClientes) != Double
-				.doubleToLongBits(other._sumaDeDistanciasConClientes))
 			return false;
 		return true;
 	}
