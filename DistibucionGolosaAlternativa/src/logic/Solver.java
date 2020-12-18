@@ -33,7 +33,7 @@ public class Solver {
 					_distribucion.agregarCentroElegido(centro);
 
 					// Se va guardando el costo total de la solucion
-					_costoTotalSolucion+=centro.getSumaDeDistanciasConClientes(); 
+					_costoTotalSolucion+=centro.getSumaDeDistanciasConClientes();
 				}
 				// Se desvinculan los clientes de los centros que no fueron elegidos
 				else {
