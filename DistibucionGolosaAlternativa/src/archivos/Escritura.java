@@ -82,12 +82,12 @@ public class Escritura {
 		
 		OutputStreamWriter out = new OutputStreamWriter(fos);
 		
-		for (CentroDeDistribucion centroDeDistribucion : centros) {
+		for (CentroDeDistribucion centro : centros) {
 			//out.write("===========================\n");
-			out.write("Nombre: "+centroDeDistribucion.getNombre()+"\n");
-			out.write("Costo Total: "+centroDeDistribucion.getSumaDeDistanciasConClientes()+"\n");
-			out.write("Latitud: "+Double.toString( centroDeDistribucion.getLatitud())+"\n");
-			out.write("Longitud: "+Double.toString( centroDeDistribucion.getLongitud())+"\n");
+			out.write("Nombre: "+centro.getNombre()+"\n");
+			out.write("Costo Total: "+centro.getSumaDeDistanciasConClientes()+"\n");
+			out.write("Latitud: "+Double.toString( centro.getLatitud())+"\n");
+			out.write("Longitud: "+Double.toString( centro.getLongitud())+"\n");
 			out.write("===========================\n");
 		}
 		out.close();
