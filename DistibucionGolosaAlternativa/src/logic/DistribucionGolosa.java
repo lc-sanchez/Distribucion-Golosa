@@ -98,7 +98,7 @@ public class DistribucionGolosa {
 		min.set_cantClientesElegidos(min.get_cantClientesElegidos()+1);
 	}
 	
-	private void actualizarValoresComparativos() {
+	public void actualizarValoresComparativos() {
 		for(int i=0;i<_centrosDeDistribucion.size();i++) {
 			CentroDeDistribucion centro= _centrosDeDistribucion.get(i);
 			

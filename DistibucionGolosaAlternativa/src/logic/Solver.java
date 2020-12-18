@@ -31,13 +31,14 @@ public class Solver {
 				// Se pregunta si no se elegieron suficientes centros ya
 				if(_distribucion.getCantCentrosDeDistribucionElegidos()< _distribucion.getCantCentrosPermitidos()) {
 					_distribucion.agregarCentroElegido(centro);
-
+					
 					// Se va guardando el costo total de la solucion
 					_costoTotalSolucion+=centro.getSumaDeDistanciasConClientes();
+					
 				}
 				// Se desvinculan los clientes de los centros que no fueron elegidos
 				else {
-					// Se reinician las variables en los centros no elejidos
+					// Se reinician las variables en los centros no elegidos
 					centro.set_cantClientesElegidos(0);
 					centro.set_sumaDeDistanciasConClientes(0.0);
 					centro.set_promedioDistanciaConClientes(0.0);
@@ -46,10 +47,16 @@ public class Solver {
 						if(cliente.get_centroElegido().equals(centro)) {
 							_distribucion.setCentroMasCercano(cliente,
 									_distribucion.getCentrosDeDistribucionElegidos());
+							
+							//Se actualiza el costo de los clientes revinculados a centros elegidos
+							CentroDeDistribucion centroElegido= cliente.get_centroElegido();
+							double costoAgregado= centroElegido.calcularDistanciaConCliente(cliente);
+							_costoTotalSolucion+= costoAgregado;
 						}
 					}
 				}
 			}
+			_distribucion.actualizarValoresComparativos();
 		}
 	}
 	// Se traen los centros ordenados por sort por la suma total de distancias entre el centro y los clientes
@@ -58,6 +65,10 @@ public class Solver {
 		ArrayList<CentroDeDistribucion> centrosOrdenados= _distribucion.getCentrosDeDistribucion();
 		Collections.sort(centrosOrdenados); //Implementacion de Mergesort
 		return centrosOrdenados;
+	}
+	
+	public void actualizarValorDeCentro(CentroDeDistribucion centro) {
+		
 	}
 	
 	public double getCostoTotalSolucion() {
