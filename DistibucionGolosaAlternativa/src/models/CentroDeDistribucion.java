@@ -48,8 +48,10 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 		}
 		else {
 			double sumaTotalDistancias=0.0;
-			for(int i=0;i<clientes.size();i++) {
-				sumaTotalDistancias=sumaTotalDistancias+ calcularDistanciaConCliente(clientes.get(i));
+			for(Cliente c : clientes) {
+				if(c.get_centroElegido()==this) {
+					sumaTotalDistancias=sumaTotalDistancias+ calcularDistanciaConCliente(c);
+				}
 			}
 			_sumaDeDistanciasConClientes=sumaTotalDistancias;
 		}
@@ -138,16 +140,19 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 	public double getSumaDeDistanciasConClientes() {
 		return _sumaDeDistanciasConClientes;
 	}
-	
+
+	public void set_sumaDeDistanciasConClientes(double _sumaDeDistanciasConClientes) {
+		this._sumaDeDistanciasConClientes = _sumaDeDistanciasConClientes;
+	}
+
 	public double getPromedioDistanciasConClientes() {
 		return _promedioDistanciaConClientes;
 	}
 
-	public void calcularDistanciaConCliente() {
-		// TODO Auto-generated method stub
-		
+	public void set_promedioDistanciaConClientes(double _promedioDistanciaConClientes) {
+		this._promedioDistanciaConClientes = _promedioDistanciaConClientes;
 	}
-
+	
 	public double get_distanciaConClienteTemporal() {
 		return _distanciaConClienteTemporal;
 	}

@@ -2,7 +2,6 @@ package logic;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import models.CentroDeDistribucion;
 import models.Cliente;
@@ -45,7 +44,6 @@ public class DistribucionGolosa {
 	}
 	
 	// Se setean los datos de clientes y centros traidos desde un archivo
-	@SuppressWarnings("unused")
 	public void cargarDatos() throws ClassNotFoundException, IOException {
 		//Se cargan los arrayList de la lectura
 		_centrosDeDistribucion= Lectura.obtenerCentros();
@@ -56,38 +54,37 @@ public class DistribucionGolosa {
 		
 		//Se setean los valores comparativos en los centros de distribucion
 		for(Cliente cliente:getClientes()) {
-			setValoresComparativosYPromedios(cliente);
+			setValoresComparativosYPromedios(cliente,_centrosDeDistribucion);
 		}
 	}
 	
-	private void setValoresComparativosYPromedios(Cliente cliente) {
+	public void setValoresComparativosYPromedios(Cliente cliente,ArrayList<CentroDeDistribucion> centros) {
 		CentroDeDistribucion min = null;
 		
 		// Se recorren todos los centros por un cliente y se busca cual es el centro con menor distancia al cliente
 		// Se guarda esa referencia a ese centro en una variable min
-		for(int i=0;i<_cantCentrosDistribucion;i++) {
+		for(int i=0;i<centros.size();i++) {
 			
 			// Se calcula la distancia del centro actual con el cliente y se la guarda en el centro
-			_centrosDeDistribucion.get(i).set_distanciaConClienteTemporal
-				(_centrosDeDistribucion.get(i).calcularDistanciaConCliente(cliente));
+			centros.get(i).set_distanciaConClienteTemporal
+				(centros.get(i).calcularDistanciaConCliente(cliente));
 			
 			// Se pregunta si ya se guardo al menos una vez en el min alguna referencia para comparar
 			if(min==null) {
-				min = _centrosDeDistribucion.get(i);
+				min = centros.get(i);
 			}
 			
 			// En caso de que si se haya guardado, se procede a comparar si el centro actual 
 			// tiene menor distancia al cliente que el centro guardado en min
 			// En caso de que si sea menor, se reemplaza la referencia de min al centro actual
-			else if(_centrosDeDistribucion.get(i).get_distanciaConClienteTemporal()<min.get_distanciaConClienteTemporal()) {
-				min = _centrosDeDistribucion.get(i);
+			else if(centros.get(i).get_distanciaConClienteTemporal()<min.get_distanciaConClienteTemporal()) {
+				min = centros.get(i);
 			}
-			
 			// Se calcula la suma de distancias de los clientes hasta el momento con el centro 
 			// y el promedio de distancias de todos los clientes con el centro
 			// Se guardan los valores en el centro desde donde se llaman los metodos
-			_centrosDeDistribucion.get(i).sumaDeDistanciasConClientes(_clientes);
-			_centrosDeDistribucion.get(i).promedioDeDistanciasConClientes(_cantClientes);
+			centros.get(i).sumaDeDistanciasConClientes(_clientes);
+			centros.get(i).promedioDeDistanciasConClientes(_cantClientes);
 		}
 
 		// Se vincula el cliente con el centro que este a menor distancia
@@ -97,31 +94,6 @@ public class DistribucionGolosa {
 		// Para luego elejir que centro abrir
 		min.set_cantClientesElegidos(min.get_cantClientesElegidos()+1);
 	}
-	
-	// Lo mismo que el metodo anterior, pero para clientes que se desvinculan de un centro que se decidio no abrir
-	public void setValoresComparativosYPromediosCentroElegido(Cliente cliente) {
-		CentroDeDistribucion min = null;
-		
-		for(int i=0;i<_cantCentrosDeDistribucionElegidos;i++) {
-			
-			_centrosDeDistribucionElegidos.get(i).set_distanciaConClienteTemporal
-			
-				(_centrosDeDistribucionElegidos.get(i).calcularDistanciaConCliente(cliente));
-			
-			if(i==0) {
-				min = _centrosDeDistribucionElegidos.get(i);
-			}
-			else if(_centrosDeDistribucionElegidos.get(i).get_distanciaConClienteTemporal()<min.get_distanciaConClienteTemporal()) {
-				min = _centrosDeDistribucionElegidos.get(i);
-			}
-		}
-
-		cliente.set_centroElegido(min);
-		
-		min.set_cantClientesElegidos(min.get_cantClientesElegidos()+1);
-	}
-	
-	
 	
 	public void resolverDistribucion() {
 		Solver solver= new Solver(this);
@@ -135,7 +107,7 @@ public class DistribucionGolosa {
 	public void agregarCliente(Cliente cliente) {
 		_clientes.add(cliente);
 		_cantClientes++;
-		setValoresComparativosYPromedios(cliente);
+		setValoresComparativosYPromedios(cliente,_centrosDeDistribucion);
 	}
 	
 	public void agregarCentroDeDistribucion(CentroDeDistribucion centro) {

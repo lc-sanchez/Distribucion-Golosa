@@ -23,21 +23,29 @@ public class Solver {
 			throw new RuntimeException("Los centros pedidos no puede ser menor a la cantidad de centros totales.");
 		}
 		else {
-			//La solucion se va guardando en una variable centros de distribucion elegidos en distribucionGolosa
-			//Recorremos el conjunto de centros ordenados de mayor a menor
+			
+			// La solucion se va guardando en una variable centros de distribucion elegidos en distribucionGolosa
+			// Recorremos el conjunto de centros ordenados de mayor a menor
 			for(CentroDeDistribucion centro: centrosOrdenados()) {
+				
+				// Se pregunta si no se elegieron suficientes centros ya
 				if(_distribucion.getCantCentrosDeDistribucionElegidos()< _distribucion.getCantCentrosPermitidos()) {
 					_distribucion.agregarCentroElegido(centro);
 
-					//Se va guardando el costo total de la solucion
+					// Se va guardando el costo total de la solucion
 					_costoTotalSolucion+=centro.getSumaDeDistanciasConClientes(); 
 				}
-				//Se desvinculan los clientes de los centros que no fueron elegidos
+				// Se desvinculan los clientes de los centros que no fueron elegidos
 				else {
+					// Se reinician las variables en los centros no elejidos
 					centro.set_cantClientesElegidos(0);
+					centro.set_sumaDeDistanciasConClientes(0.0);
+					centro.set_promedioDistanciaConClientes(0.0);
+					
 					for(Cliente cliente : _distribucion.getClientes()) {
 						if(cliente.get_centroElegido().equals(centro)) {
-							_distribucion.setValoresComparativosYPromediosCentroElegido(cliente);
+							_distribucion.setValoresComparativosYPromedios(cliente,
+									_distribucion.getCentrosDeDistribucionElegidos());
 						}
 					}
 				}
