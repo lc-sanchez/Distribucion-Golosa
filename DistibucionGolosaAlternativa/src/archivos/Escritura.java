@@ -84,9 +84,10 @@ public class Escritura {
 		
 		for (CentroDeDistribucion centroDeDistribucion : centros) {
 			//out.write("===========================\n");
-			out.write(centroDeDistribucion.getNombre()+"\n");
-			out.write(Integer.toString((int) centroDeDistribucion.getLatitud())+"\n");
-			out.write(Integer.toString((int) centroDeDistribucion.getLongitud())+"\n");
+			out.write("Nombre: "+centroDeDistribucion.getNombre()+"\n");
+			out.write("Costo Total: "+centroDeDistribucion.getSumaDeDistanciasConClientes()+"\n");
+			out.write("Latitud: "+Double.toString( centroDeDistribucion.getLatitud())+"\n");
+			out.write("Longitud: "+Double.toString( centroDeDistribucion.getLongitud())+"\n");
 			out.write("===========================\n");
 		}
 		out.close();

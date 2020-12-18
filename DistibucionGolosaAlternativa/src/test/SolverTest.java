@@ -45,7 +45,7 @@ public class SolverTest {
 		//Execute
 		solver.resolverDistribucion();
 		
-		double resultadoEsperado=1.7618657007687524;
+		double resultadoEsperado = 1.7618657007687524;
 		assertEquals(resultadoEsperado,solver.getCostoTotalSolucion(),12);
 	}
 	
