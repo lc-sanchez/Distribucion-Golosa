@@ -55,7 +55,6 @@ public class Ventana_Principal extends JFrame{
 					
 					// Se crea la vista del mapa
 					Vista_Mapa vistaMapaVisual = new Vista_Mapa(distribucion) {
-						@SuppressWarnings("unused")
 						public void dispose() {
 							getFrame().setVisible(true);
 							super.frame.dispose();

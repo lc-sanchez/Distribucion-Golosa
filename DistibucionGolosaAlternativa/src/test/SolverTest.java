@@ -37,6 +37,11 @@ public class SolverTest {
 		clientes.add(cliente3);
 		clientes.add(cliente4);
 		
+		cliente1.set_centroElegido(centro3);
+		cliente2.set_centroElegido(centro1);
+		cliente3.set_centroElegido(centro2);
+		cliente3.set_centroElegido(centro3);
+		
 		centro1.sumaDeDistanciasConClientes(clientes);
 		centro2.sumaDeDistanciasConClientes(clientes);
 		centro3.sumaDeDistanciasConClientes(clientes);
@@ -49,7 +54,8 @@ public class SolverTest {
 		//Tenemos que obtener 2 valores
 		CentroDeDistribucion centroObtenido1=distribucion.getCentrosDeDistribucionElegidos().get(0);
 		CentroDeDistribucion centroObtenido2=distribucion.getCentrosDeDistribucionElegidos().get(1);
-		
+		System.out.println(centroObtenido1);
+		System.out.println(centroObtenido2);
 		//Verify
 		assertEquals(2,distribucion.getCantCentrosDeDistribucionElegidos());
 		assertTrue(centroObtenido1.equals(centro3) && centroObtenido2.equals(centro1));

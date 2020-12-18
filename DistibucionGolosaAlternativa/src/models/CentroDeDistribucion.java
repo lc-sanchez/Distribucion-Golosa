@@ -18,7 +18,8 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 		setNombre(nombre);
 		setLatitud(latitud);
 		setLongitud(longitud);
-		set_cantClientesElegidos(0);
+		//set_cantClientesElegidos(0);
+		_cantClientesElegidos=0;
 	}
 
 	public double calcularDistanciaConCliente(Cliente cliente) {
@@ -51,6 +52,7 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 			for(Cliente c : clientes) {
 				if(c.get_centroElegido()==this) {
 					sumaTotalDistancias=sumaTotalDistancias+ calcularDistanciaConCliente(c);
+					_cantClientesElegidos=_cantClientesElegidos+1;
 				}
 			}
 			_sumaDeDistanciasConClientes=sumaTotalDistancias;
@@ -58,8 +60,8 @@ public class CentroDeDistribucion implements Comparable<CentroDeDistribucion>, S
 			
 	}
 	
-	public void promedioDeDistanciasConClientes(int cantidadClientes) {
-		_promedioDistanciaConClientes=_sumaDeDistanciasConClientes/cantidadClientes;
+	public void promedioDeDistanciasConClientes() {
+		_promedioDistanciaConClientes=_sumaDeDistanciasConClientes/_cantClientesElegidos;
 	}
 	
 
