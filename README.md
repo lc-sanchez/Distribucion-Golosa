@@ -1,6 +1,6 @@
-#Distribucion Golosa
+# Distribucion Golosa
 ***
-El objetivo de este trabajo es implementar un algoritmo goloso para una variante del problema de facility location.
+El objetivo de este trabajo universitario es implementar un algoritmo goloso para una variante del problema de facility location.
 ***
 Tenemos un conjunto C de clientes que debemos atender, cada uno geolocalizado con su latitud y longitud. También se tiene un conjunto D de puntos donde podemos ubicar centros de distribución para los clientes.
 Estos puntos también están geolocalizados con su latitud y longitud. Finalmente, tenemos una cantidad k máxima de centros de distribución que podemos abrir. Estos k centros deben ubicarse en k puntos del conjunto D.
