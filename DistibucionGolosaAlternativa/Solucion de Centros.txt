@@ -1,5 +1,5 @@
 Nombre: Shell
-Costo Total: 0.6876403176249383
+Costo Total: 1.0878731145888665
 Latitud: -34.5168
 Longitud: -58.72
 ===========================
@@ -7,9 +7,4 @@ Nombre: Axion
 Costo Total: 0.6739925861798859
 Latitud: -34.5225
 Longitud: -58.722
-===========================
-Nombre: YPF
-Costo Total: 0.17114155052845625
-Latitud: -34.5187
-Longitud: -58.717
 ===========================

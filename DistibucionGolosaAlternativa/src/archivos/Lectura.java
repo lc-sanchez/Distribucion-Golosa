@@ -52,7 +52,7 @@ public class Lectura
 			ObjectInputStream in = new ObjectInputStream(fis);
 			
 			// Se leen los centros del archivo y se los agrega al arraylist que se retorna
-			for (int i = 0; i < 3; i++) 
+			for (int i = 0; i < 5; i++) 
 			{
 				CentroDeDistribucion p1 = (CentroDeDistribucion) in.readObject();
 				ret.add(p1);

@@ -25,6 +25,8 @@ public class Escritura {
 		CentroDeDistribucion centro1 = new CentroDeDistribucion("Axion",-34.5225,-58.722);
 		CentroDeDistribucion centro2 = new CentroDeDistribucion("YPF",-34.5187,-58.717);
 		CentroDeDistribucion centro3 = new CentroDeDistribucion("Shell",-34.5168,-58.72);
+		CentroDeDistribucion centro4 = new CentroDeDistribucion("Puma",-34.5220,-58.715);
+		CentroDeDistribucion centro5 = new CentroDeDistribucion("Esso",-34.5180,-58.712);
 		
 		try
 		{
@@ -65,8 +67,8 @@ public class Escritura {
 			out.writeObject(centro1);
 			out.writeObject(centro2);
 			out.writeObject(centro3);
-//			out.writeObject(centro4);
-//			out.writeObject(centro5);
+			out.writeObject(centro4);
+			out.writeObject(centro5);
 
 			out.close();
 			
