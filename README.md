@@ -19,4 +19,4 @@ Como objetivos adicionales, decidimos contemplar los siguientes elementos:
 * Escribir la solución, es decir, los centros de distribución para abrir en un archivo.
 * Mostrar como estadística de la solución, la distancia promedio de cada centro de distribución que lo compone, con los clientes.
 
-Informe de proyecto para la comisión [click aca](https://docs.google.com/document/d/1xia1uuITFA3OMRDUjeQ9Cahv2ama4qKe/edit?usp=sharing&ouid=103221455200934392643&rtpof=true&sd=true)
+Informe de proyecto para la comisión [click aca](https://drive.google.com/file/d/1l8Js1ls_4w2vLZ4fAR4_Y9SFnl9zvG_H/view?usp=drive_link)
