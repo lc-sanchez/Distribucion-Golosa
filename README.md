@@ -19,4 +19,9 @@ Como objetivos adicionales, decidimos contemplar los siguientes elementos:
 * Escribir la solución, es decir, los centros de distribución para abrir en un archivo.
 * Mostrar como estadística de la solución, la distancia promedio de cada centro de distribución que lo compone, con los clientes.
 
+## Como ejecutar el proyecto
+1. Verifique tener instalado Java en su computadora o extensiones en VisualStudioCode.
+2. Primero ejecute el archivo _"Escritura.java"_.
+3. Luego ejecute el archivo _"Main.java"_.
+
 Informe de proyecto para la comisión [click aca](https://drive.google.com/file/d/1l8Js1ls_4w2vLZ4fAR4_Y9SFnl9zvG_H/view?usp=drive_link)
